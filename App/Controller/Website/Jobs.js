@@ -4,6 +4,7 @@ const {submitApplication} = require("../../Model/Website_Model/submitApplication
 
 
 let submitApp = async (req, res) => {
+
   try {
     let { id } = req.params;
 
@@ -172,7 +173,9 @@ This is an automated email. Please do not reply.
       data: application
     });
 
-  } catch (error) {
+  } 
+  
+  catch (error) {
      res.send({
       status: 0,
       message: error.message
