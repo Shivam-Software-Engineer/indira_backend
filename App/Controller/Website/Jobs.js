@@ -19,12 +19,7 @@ let submitApp = async (req, res) => {
     // Job Details
     const job = await addJobModel.findById(id);
 
-    if (!job) {
-      return res.send({
-        status: 0,
-        message: "Job not found"
-      });
-    }
+   
 
     // Save Candidate
     const application = await submitApplication.create(obj);
@@ -94,7 +89,7 @@ td{
 <div class="container">
 
 <div class="header">
-<h1>Application Received 🎉</h1>
+<h1>Application Received </h1>
 <p>Thank you for applying at Vistaar Digital</p>
 </div>
 
@@ -171,14 +166,14 @@ This is an automated email. Please do not reply.
 `
     });
 
-    return res.send({
+     res.send({
       status: 1,
       message: "Job applied successfully",
       data: application
     });
 
   } catch (error) {
-    return res.send({
+     res.send({
       status: 0,
       message: error.message
     });
@@ -258,7 +253,7 @@ let updateCandidateStatus = async (req, res) => {
 
       case "Shortlisted":
         subject = `Congratulations! You have been Shortlisted`;
-        heading = "🎉 Congratulations!";
+        heading = "Congratulations!";
         color = "#2563eb";
 
         message = `
@@ -274,7 +269,7 @@ let updateCandidateStatus = async (req, res) => {
 
       case "Selected":
         subject = `Congratulations! You're Selected`;
-        heading = "🥳 You're Selected!";
+        heading = "You're Selected!";
         color = "#16a34a";
 
         message = `
