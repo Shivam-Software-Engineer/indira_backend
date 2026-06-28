@@ -12,7 +12,10 @@ let addJobSchema = mongoose.Schema({
         type: String
     },
     location: String,
-    JobType: String,
+    JobType: {
+        type:String,
+        default:"Full Time"
+    },
     description: String,
     
     

@@ -1,8 +1,7 @@
-
+require("dotenv").config();
 const {adminRoutes} = require("./App/Routes/AdminRoutes");
 let express = require("express");
 let mongoose = require("mongoose");
-require("dotenv").config();
 let App = express();
 let cors = require("cors");
 const { websiteRoutes } = require("./App/Routes/WebsiteRoutes");
