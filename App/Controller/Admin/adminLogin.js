@@ -8,21 +8,23 @@ let adminLogin = async (req, res)=>{
     let checkAdmin=await adminLoginModel.findOne({uname,pass})
     let obj
     
-    if(checkAdmin){
-        obj={
-            status:1,
-            message:"Loginned!",
-            id:checkAdmin._id
-        }
-        res.send(obj)
+    try {
+    if (!checkAdmin) {
+        throw new Error("Invalid username or Password!");
     }
-    else{
-        obj={
-            status:0,
-            message:"Invalid username or Password!"
-        }
-        res.send(obj)
-    }
+
+    res.send({
+        status: 1,
+        message: "Logged in!",
+        id: checkAdmin._id
+    });
+
+} catch (err) {
+    res.send({
+        status: 0,
+        message: err.message
+    });
+}
 }
 
 let adminCookeieCheck = async (req, res)=>{
