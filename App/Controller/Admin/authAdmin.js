@@ -21,7 +21,7 @@ let changePass = async (req, res) => {
     useOtp.set('myOtp', OTP)
 
      await resend.emails.send({
-             from: `"Vistaar Digital" <${process.env.SMTP_USER}>`,
+             from: "Vistaar Digital <onboarding@resend.dev>",
   to: dbEmail,
   subject: "Reset Your Password | Vistaar Digital",
   html: `

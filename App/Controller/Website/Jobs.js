@@ -28,7 +28,7 @@ let submitApp = async (req, res) => {
 
     // Mail
     await resend.emails.send({
-      from: `"Vistaar Digital" <${process.env.SMTP_USER}>`,
+      from: "Vistaar Digital <onboarding@resend.dev>",
       to: application.email,
       subject: `Application Received - ${job.jobTitle}`,
       html: `
@@ -325,7 +325,7 @@ let updateCandidateStatus = async (req, res) => {
 
    await resend.emails.send({
 
-      from: `"Vistaar Digital HR" <${process.env.SMTP_USER}>`,
+      from: "Vistaar Digital HR <onboarding@resend.dev>",
       to: application.email,
       subject,
 
