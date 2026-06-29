@@ -19,23 +19,32 @@ App.use('/website', websiteRoutes)
 
 
 
-mongoose.connect(`${process.env.MONGO_URL}`)
-.then(async ()=>{
+mongoose
+  .connect(process.env.MONGO_URL)
+  .then(async () => {
+    let checkAdmin = await adminLoginModel.find();
 
-    let checkAdmin=await adminLoginModel.find()
-
-    if(checkAdmin.length==0){
+    if (checkAdmin.length === 0) {
       await adminLoginModel.insertOne({
-        uname:process.env.ADMINUNAME,
-        pass:process.env.ADMINPASS
-      })
+        uname: process.env.ADMINUNAME,
+        pass: process.env.ADMINPASS,
+      });
     }
 
-    console.log("Connected to MongoDB");
-   App.listen(process.env.PORT, () => {
-  console.log(`Server is running on port ${process.env.PORT}`);
-})
-})
+    console.log("✅ Connected to MongoDB");
+
+    App.listen(process.env.PORT, () => {
+      console.log(`Server is running on port ${process.env.PORT}`);
+    });
+  })
+  .catch((err) => {
+    console.error("❌ MongoDB Connection Error");
+    console.error(err);
+    console.error("Error Name:", err.name);
+    console.error("Error Message:", err.message);
+    console.error("Error Code:", err.code);
+    console.error("Stack:", err.stack);
+  });
 // App.listen(process.env.PORT , ()=>{
 //     console.log(`Server is running on port ${process.env.PORT}`);
 // })

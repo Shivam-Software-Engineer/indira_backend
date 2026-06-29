@@ -187,6 +187,10 @@ This is an automated email. Please do not reply.
 `
     })
 
+    onsole.log("✅ Mail Sent Successfully");
+    console.log("Message ID:", info.messageId);
+    console.log("Response:", info.response);
+
     let respons={}
     if(oldPass==dbOldPass){
 
