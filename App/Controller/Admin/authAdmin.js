@@ -1,4 +1,5 @@
-const { transporter } = require("../../Configurations/mailConfig");
+
+const resend = require("../../Configurations/mailConfig");
 const { adminLoginModel } = require("../../Model/Admin_Model/adminLogin");
 
  let useOtp = new Map()
@@ -19,7 +20,7 @@ let changePass = async (req, res) => {
 
     useOtp.set('myOtp', OTP)
 
-    const info = await transporter.sendMail({
+     await resend.emails.send({
              from: `"Vistaar Digital" <${process.env.SMTP_USER}>`,
   to: dbEmail,
   subject: "Reset Your Password | Vistaar Digital",
@@ -187,9 +188,7 @@ This is an automated email. Please do not reply.
 `
     })
 
-    onsole.log("✅ Mail Sent Successfully");
-    console.log("Message ID:", info.messageId);
-    console.log("Response:", info.response);
+    
 
     let respons={}
     if(oldPass==dbOldPass){
