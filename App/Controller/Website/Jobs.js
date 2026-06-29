@@ -1,4 +1,5 @@
-const { transporter } = require("../../Configurations/mailConfig");
+// const { transporter } = require("../../Configurations/mailConfig");
+const resend = require("../../Configurations/mailConfig");
 const {addJobModel} = require("../../Model/Admin_Model/addJobModel");
 const {submitApplication} = require("../../Model/Website_Model/submitApplication");
 
@@ -26,7 +27,7 @@ let submitApp = async (req, res) => {
     const application = await submitApplication.create(obj);
 
     // Mail
-    await transporter.sendMail({
+    await resend.emails.send({
       from: `"Vistaar Digital" <${process.env.SMTP_USER}>`,
       to: application.email,
       subject: `Application Received - ${job.jobTitle}`,
@@ -322,7 +323,7 @@ let updateCandidateStatus = async (req, res) => {
         `;
     }
 
-    await transporter.sendMail({
+   await resend.emails.send({
 
       from: `"Vistaar Digital HR" <${process.env.SMTP_USER}>`,
       to: application.email,
