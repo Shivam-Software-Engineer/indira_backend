@@ -1,11 +1,14 @@
 
 let express = require("express");
-const { jobsRoutes } = require("./Website/Jobs");
+const { Authentication } = require("./Website/auth");
+const { ProductRoutes } = require("./Website/productRoutes");
+const { OrderRoutes } = require("./Website/OrderRoutes");
 
 let websiteRoutes=express.Router();
 
-//http://localhost:8000/website/job
-websiteRoutes.use('/job', jobsRoutes)
 
+websiteRoutes.use('/auth', Authentication)
+websiteRoutes.use('/product', ProductRoutes)
+websiteRoutes.use("/order", OrderRoutes);
 
 module.exports={websiteRoutes};

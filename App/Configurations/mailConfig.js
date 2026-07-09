@@ -1,24 +1,19 @@
-// const nodemailer = require("nodemailer");
+const nodemailer = require("nodemailer");
 
-// // Create a transporter using SMTP
-// const transporter = nodemailer.createTransport({
-//   host: "smtp.gmail.com",
-//  port: 587,
-//   secure: false,
-//   family: 4, // use STARTTLS (upgrade connection to TLS after connecting)
-//   auth: {
-//     user: process.env.SMTP_USER,
-//     pass: process.env.SMTP_PASS,
-//   },
-// });
+// Create a transporter using SMTP
+const transporter = nodemailer.createTransport({
+  host: "smtp.gmail.com",
+ port: 587,
+  secure: false,
+  family: 4, // use STARTTLS (upgrade connection to TLS after connecting)
+  auth: {
+    user: process.env.SMTP_USER,
+    pass: process.env.SMTP_PASS,
+  },
+});
 
-// // console.log(process.env.SMTP_USER)
-// // console.log(process.env.SMTP_PASS)
+// console.log(process.env.SMTP_USER)
+// console.log(process.env.SMTP_PASS)
 
-// module.exports = {transporter}
+module.exports = {transporter}
 
-const { Resend } = require("resend");
-
-const resend = new Resend(process.env.RESEND_API_KEY);
-
-module.exports = resend;
