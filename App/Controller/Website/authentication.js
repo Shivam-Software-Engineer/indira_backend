@@ -1,6 +1,6 @@
 const bcrypt = require("bcrypt");
 const { User } = require("../../Model/Website_Model/userModel");
-const { transporter } = require("../../Configurations/mailConfig");
+// const { transporter } = require("../../Configurations/mailConfig");
 
 let useOtp = new Map();
 
@@ -34,48 +34,49 @@ const register = async (req, res) => {
       password,
     });
 
-    await transporter.sendMail({
-      from: `"Indira IVF" <${process.env.SMTP_USER}>`,
-      to: email,
-      subject: "Indira IVF - Email Verification",
-      html: `
-        <div style="max-width:600px;margin:auto;background:#f8f9fa;padding:30px;font-family:Arial">
+    // await transporter.sendMail({
+    //   from: `"Indira IVF" <${process.env.SMTP_USER}>`,
+    //   to: email,
+    //   subject: "Indira IVF - Email Verification",
+    //   html: `
+    //     <div style="max-width:600px;margin:auto;background:#f8f9fa;padding:30px;font-family:Arial">
 
-          <div style="background:white;padding:40px;border-radius:10px;text-align:center">
+    //       <div style="background:white;padding:40px;border-radius:10px;text-align:center">
 
-            <h1 style="color:#0d6efd;">Indira IVF</h1>
+    //         <h1 style="color:#0d6efd;">Indira IVF</h1>
 
-            <h2>Email Verification</h2>
+    //         <h2>Email Verification</h2>
 
-            <p>Thank you for registering.</p>
+    //         <p>Thank you for registering.</p>
 
-            <p>Your Verification OTP is</p>
+    //         <p>Your Verification OTP is</p>
 
-            <h1
-              style="
-              background:#0d6efd;
-              color:white;
-              display:inline-block;
-              padding:15px 40px;
-              border-radius:8px;
-              letter-spacing:8px;
-            ">
-              ${OTP}
-            </h1>
+    //         <h1
+    //           style="
+    //           background:#0d6efd;
+    //           color:white;
+    //           display:inline-block;
+    //           padding:15px 40px;
+    //           border-radius:8px;
+    //           letter-spacing:8px;
+    //         ">
+    //           ${OTP}
+    //         </h1>
 
-            <p style="margin-top:20px;">
-              Please do not share this OTP with anyone.
-            </p>
+    //         <p style="margin-top:20px;">
+    //           Please do not share this OTP with anyone.
+    //         </p>
 
-          </div>
+    //       </div>
 
-        </div>
-      `,
-    });
+    //     </div>
+    //   `,
+    // });
 
     return res.json({
       status: true,
       message: "OTP Sent Successfully",
+      OTP
     });
   } catch (err) {
     console.log(err);
