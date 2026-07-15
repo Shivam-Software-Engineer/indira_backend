@@ -33,6 +33,8 @@ const register = async (req, res) => {
       otp: OTP,
       password,
     });
+    console.log("SMTP_USER:", process.env.SMTP_USER);
+console.log("SMTP_PASS:", process.env.SMTP_PASS ? "FOUND" : "MISSING");
 
     await transporter.sendMail({
       from: `"Indira IVF" <${process.env.SMTP_USER}>`,
